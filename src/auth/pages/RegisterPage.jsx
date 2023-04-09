@@ -1,12 +1,26 @@
 import { Link as RouterLink } from 'react-router-dom'
-import { Google } from "@mui/icons-material"
 import { Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from '../layout/AuthLayout'
+import { useForm } from '../../hooks/useForm';
+
+const formData = {
+  email: 'guilloz@gmail.com',
+  password: '123456',
+  displayName: 'Guillermo Olvera',
+}
 
 export const RegisterPage = () => {
+
+  const { displayName, email, password, onInputChange, formState } = useForm(formData);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(formState);
+  }
+
   return (
     <AuthLayout title='Create an account'>
-      <form>
+      <form onSubmit={ onSubmit }>
             <Grid container>
               <Grid item xs={ 12 } sx={{ mt: 2 }}>
                 <TextField 
@@ -14,6 +28,9 @@ export const RegisterPage = () => {
                   type="text" 
                   placeholder="Guillermo Olvera" 
                   fullWidth
+                  name='displayName'
+                  value={ displayName }
+                  onChange={ onInputChange }
                 />
               </Grid>
               <Grid item xs={ 12 } sx={{ mt: 2 }}>
@@ -22,6 +39,9 @@ export const RegisterPage = () => {
                   type="email" 
                   placeholder="correo@ejemplo.com" 
                   fullWidth
+                  name='email'
+                  value={ email }
+                  onChange={ onInputChange }
                 />
               </Grid>
               <Grid item xs={ 12 } sx={{ mt: 2 }}>
@@ -30,12 +50,19 @@ export const RegisterPage = () => {
                   type="password" 
                   placeholder="Password" 
                   fullWidth
+                  name='password'
+                  value={ password }
+                  onChange={ onInputChange }
                 />
               </Grid>
 
               <Grid container spacing={ 2 } sx={{ mb: 2, mt: 1 }}>
                 <Grid item xs={ 12 }>
-                  <Button variant="contained" fullWidth>
+                  <Button 
+                    variant="contained" 
+                    fullWidth
+                    type='submit'
+                  >
                     Create Account
                   </Button>
                 </Grid>
