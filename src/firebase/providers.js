@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { FirebaseAuth } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
@@ -33,7 +33,8 @@ export const registerUserWithEmailPassword = async({ email, password, displayNam
         console.log(resp);
 
         // TODO: Actualizar el displayname en firebase
-
+        await updateProfile(FirebaseAuth.currentUser, { displayName });
+        
         return {
             ok: true,
             uid, photoURL, email, displayName
