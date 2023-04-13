@@ -7,7 +7,7 @@ import {
     Typography 
 } from "@mui/material";
 import { useSelector } from "react-redux";
-import { SideBarItem } from "./SideBarItem";
+import { SideBarItem } from "./";
 
 export const SideBar = ({ drawerWidth = 240 }) => {
 

@@ -4,7 +4,6 @@ import { JournalLayout } from "../layout/JournalLayout"
 import { NoteView, NothingSelectedView } from "../views"
 import { startNewNote } from "../../store/journal/thunks"
 import { useDispatch, useSelector } from "react-redux"
-import { useMemo } from "react"
 
 export const JournalPage = () => {
 
